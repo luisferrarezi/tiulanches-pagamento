@@ -17,8 +17,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 
 @RestControllerAdvice
-public class ExceptionErros {
-
+public class ExceptionErros {	
 	@SuppressWarnings("rawtypes")
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity notValidError(MethodArgumentNotValidException ex) {
