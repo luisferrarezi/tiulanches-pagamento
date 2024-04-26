@@ -20,12 +20,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @RequestMapping(value = "/pagamentowb")
 public class PagamentoWebHook {
 	private final PagamentoExternoController controller;
-	
+
+	private static Logger logger = LoggerFactory.getLogger(PagamentoWebHook.class);
+
 	public PagamentoWebHook(PagamentoExternoController controller) {
 		this.controller = controller;
-	};
-	
-	private static Logger logger = LoggerFactory.getLogger(PagamentoWebHook.class);
+	}
 	
 	@PostMapping(value = "/processa", produces = MediaType.APPLICATION_JSON_VALUE)	
 	@Operation(summary = "Webhook para receber informação pagamento Mercado Pago", description = "Processa pagamento", tags = {"Webhook"})
@@ -38,7 +38,7 @@ public class PagamentoWebHook {
 									  @RequestParam("data.id") long idPagamento,
 									  @Schema(description = "Tipo de json enviado pelo mercado pago", example = "payment", required = true)
 									  @RequestParam("type") String type) {
-		logger.info("Processa pagamento webhook: " + idPagamento);
+		logger.info("Processa pagamento webhook: {}", idPagamento);
 		
 		if (controller.processar(idPagamento, type)) {
 	       	return ResponseEntity.noContent().build();

@@ -41,18 +41,18 @@ public class PagamentoService implements PagamentoController {
 	@Override
 	public void registra(PagamentoDto dto) {
 		Optional<Pagamento> pagamento = pagamentoRepository.findById(dto.idPagamento());		
-				
-		try {			
-			if (pagamento.isPresent()){
+
+		if (pagamento.isPresent()){
+			try {			
 				pagamento.get().registrar(dto);
 				pagamentoRepository.save(pagamento.get());
 				pedidoMessage.enviaMensagem(EventoEnum.UPDATE, new PedidoDto(new Pedido(pagamento.get().getIdPedido(), null, new ArrayList<>())));
-			} else {
-				throw new BusinessException("Pagamento não encontrado!", HttpStatus.NOT_FOUND, "Pagamento");
-			}
-		} catch (Exception e) {
-			throw new BusinessException("Falha ao alterar pagamento!", HttpStatus.BAD_REQUEST, e.getMessage());
-		}			
+			} catch (Exception e) {
+				throw new BusinessException("Falha ao alterar pagamento!", HttpStatus.BAD_REQUEST, e.getMessage());
+			}			
+		} else {
+			throw new BusinessException("Pagamento não encontrado!", HttpStatus.NOT_FOUND, "Pagamento");
+		}		
 	}
 
 	@Override
