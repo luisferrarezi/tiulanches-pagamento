@@ -1,4 +1,4 @@
-package br.com.fiap.tiulanches.core.entitie.cliente;
+package br.com.fiap.tiulanches.core.entity.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

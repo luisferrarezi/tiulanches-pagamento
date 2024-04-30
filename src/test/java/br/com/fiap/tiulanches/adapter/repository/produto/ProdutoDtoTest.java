@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.fiap.tiulanches.core.entitie.produto.Produto;
+import br.com.fiap.tiulanches.core.entity.produto.Produto;
 import br.com.fiap.tiulanches.utils.produto.ProdutoEnum;
 import br.com.fiap.tiulanches.utils.produto.ProdutoPadrao;
 

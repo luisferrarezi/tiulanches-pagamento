@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.fiap.tiulanches.adapter.repository.produto.ProdutoDto;
-import br.com.fiap.tiulanches.core.entitie.pedido.ItemPedido;
+import br.com.fiap.tiulanches.core.entity.pedido.ItemPedido;
 import br.com.fiap.tiulanches.utils.pedido.ItemPedidoEnum;
 import br.com.fiap.tiulanches.utils.pedido.ItemPedidoPadrao;
 import br.com.fiap.tiulanches.utils.produto.ProdutoPadrao;

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.fiap.tiulanches.adapter.repository.pedido.ItemPedidoDto;
 import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
-import br.com.fiap.tiulanches.core.entitie.pedido.ItemPedido;
-import br.com.fiap.tiulanches.core.entitie.pedido.Pedido;
+import br.com.fiap.tiulanches.core.entity.pedido.ItemPedido;
+import br.com.fiap.tiulanches.core.entity.pedido.Pedido;
 import br.com.fiap.tiulanches.utils.cliente.ClientePadrao;
 
 public class PedidoPadrao {
