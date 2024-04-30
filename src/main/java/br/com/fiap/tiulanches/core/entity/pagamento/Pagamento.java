@@ -1,4 +1,4 @@
-package br.com.fiap.tiulanches.core.entitie.pagamento;
+package br.com.fiap.tiulanches.core.entity.pagamento;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

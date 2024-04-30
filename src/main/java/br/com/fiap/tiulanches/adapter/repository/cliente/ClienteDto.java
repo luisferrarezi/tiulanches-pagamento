@@ -1,6 +1,6 @@
 package br.com.fiap.tiulanches.adapter.repository.cliente;
 
-import br.com.fiap.tiulanches.core.entitie.cliente.Cliente;
+import br.com.fiap.tiulanches.core.entity.cliente.Cliente;
 
 public record ClienteDto(String cpf, 
 				 		 String nome, 

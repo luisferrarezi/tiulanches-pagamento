@@ -1,7 +1,7 @@
 package br.com.fiap.tiulanches.utils.pagamento;
 
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
-import br.com.fiap.tiulanches.core.entitie.pagamento.Pagamento;
+import br.com.fiap.tiulanches.core.entity.pagamento.Pagamento;
 import br.com.fiap.tiulanches.core.enums.Pago;
 
 public class PagamentoPadrao {    

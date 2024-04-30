@@ -1,8 +1,8 @@
-package br.com.fiap.tiulanches.core.entitie.pedido;
+package br.com.fiap.tiulanches.core.entity.pedido;
 
 import java.util.List;
 
-import br.com.fiap.tiulanches.core.entitie.cliente.Cliente;
+import br.com.fiap.tiulanches.core.entity.cliente.Cliente;
 
 import java.util.ArrayList;
 

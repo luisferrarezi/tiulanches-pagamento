@@ -3,7 +3,7 @@ package br.com.fiap.tiulanches.utils.pedido;
 import java.math.BigDecimal;
 
 import br.com.fiap.tiulanches.adapter.repository.pedido.ItemPedidoDto;
-import br.com.fiap.tiulanches.core.entitie.pedido.ItemPedido;
+import br.com.fiap.tiulanches.core.entity.pedido.ItemPedido;
 import br.com.fiap.tiulanches.utils.produto.ProdutoPadrao;
 
 public class ItemPedidoPadrao {

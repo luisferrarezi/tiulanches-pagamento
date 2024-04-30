@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.fiap.tiulanches.adapter.repository.cliente.ClienteDto;
-import br.com.fiap.tiulanches.core.entitie.pedido.Pedido;
+import br.com.fiap.tiulanches.core.entity.pedido.Pedido;
 import br.com.fiap.tiulanches.utils.cliente.ClientePadrao;
 import br.com.fiap.tiulanches.utils.pedido.PedidoEnum;
 import br.com.fiap.tiulanches.utils.pedido.PedidoPadrao;

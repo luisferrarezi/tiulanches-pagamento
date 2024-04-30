@@ -1,7 +1,7 @@
 package br.com.fiap.tiulanches.utils.cliente;
 
 import br.com.fiap.tiulanches.adapter.repository.cliente.ClienteDto;
-import br.com.fiap.tiulanches.core.entitie.cliente.Cliente;
+import br.com.fiap.tiulanches.core.entity.cliente.Cliente;
 
 public class ClientePadrao {    
 

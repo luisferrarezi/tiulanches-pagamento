@@ -1,4 +1,4 @@
-package br.com.fiap.tiulanches.core.entitie.pagamento;
+package br.com.fiap.tiulanches.core.entity.pagamento;
 
 import static org.junit.Assert.assertEquals;
 

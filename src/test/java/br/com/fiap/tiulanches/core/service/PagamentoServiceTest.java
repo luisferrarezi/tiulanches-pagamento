@@ -23,7 +23,7 @@ import br.com.fiap.tiulanches.adapter.message.pedido.PedidoMessage;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoRepository;
 import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
-import br.com.fiap.tiulanches.core.entitie.pagamento.Pagamento;
+import br.com.fiap.tiulanches.core.entity.pagamento.Pagamento;
 import br.com.fiap.tiulanches.core.enums.Pago;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
 import br.com.fiap.tiulanches.utils.pagamento.PagamentoEnum;

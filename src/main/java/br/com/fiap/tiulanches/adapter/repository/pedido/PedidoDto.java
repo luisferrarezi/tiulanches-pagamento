@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.fiap.tiulanches.adapter.repository.cliente.ClienteDto;
-import br.com.fiap.tiulanches.core.entitie.pedido.Pedido;
+import br.com.fiap.tiulanches.core.entity.pedido.Pedido;
 
 public record PedidoDto (long idPedido,
 						 ClienteDto cliente,
