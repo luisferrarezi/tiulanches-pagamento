@@ -6,7 +6,7 @@ metadata:
     app: tlpagamento-config
 data:  
   ds_url: mongodb+srv://tiulanches:r4SIwVuGHSlTdFCC@tiulanches-pagamentos.anq5f5t.mongodb.net/?retryWrites=true&w=majority  
-  conexao_kafka: 10.105.69.241:9092
+  conexao_kafka: 10.110.5.216:9092
   acess_token_mp: TEST-8082269579515558-122306-f21bb2b36f40cc394c200f5130ff797f-37046661
 ---  
 apiVersion: apps/v1
@@ -60,20 +60,6 @@ spec:
                 configMapKeyRef :
                   name : tlpagamento-config
                   key :  acess_token_mp
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: pagamento-port
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 3
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: pagamento-port
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service
@@ -83,7 +69,31 @@ spec:
   selector:
     app: tlpagamento
   ports:
-    - protocol: TCP
-      port: 8083    
-      nodePort: 31500
-  type: NodePort
+  - port: 83
+    targetPort: 8083
+    protocol: TCP
+    name: http
+---    
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tlpagamento-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /pagamento
+        backend:
+          service:
+            name: tlpagamento-svc
+            port: 
+              number: 83
+      - pathType: Prefix
+        path: /pagamentowb
+        backend:
+          service:
+            name: tlpagamento-svc
+            port: 
+              number: 83              
