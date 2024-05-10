@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: tlpagamento-config 
 data:  
-  ds_url: mongodb://tiulanches-pagamentos:5uj2NOPRoOkYE57pTnRwl3NO6rD3OT9DVNDX3aTyA3rmKuqLXdlLKDOHP65K6HAr61CXChDuMVQxACDbORJeLQ==@tiulanches-pagamentos.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@tiulanches-pagamentos@
-  acess_token_mp: TEST-8082269579515558-122306-f21bb2b36f40cc394c200f5130ff797f-37046661
+  ds_url: 
+  acess_token_mp: 
   conexao_kafka: 10.0.209.67:9092
   
