@@ -44,21 +44,7 @@ spec:
               valueFrom :
                 configMapKeyRef :
                   name : tlpagamento-config
-                  key :  acess_token_mp                  
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: tlpagament-port
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 3
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: tlpagament-port
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 3
+                  key :  acess_token_mp
 ---
 apiVersion: v1
 kind: Service
@@ -68,6 +54,31 @@ spec:
   selector:
     app: tlpagamento
   ports:
-    - port: 8083
-      targetPort: 8083
-  type: LoadBalancer
+  - port: 83
+    targetPort: 8083
+    protocol: TCP
+    name: http
+---    
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tlpagamento-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /pagamento
+        backend:
+          service:
+            name: tlpagamento-svc
+            port: 
+              number: 83
+      - pathType: Prefix
+        path: /pagamentowb
+        backend:
+          service:
+            name: tlpagamento-svc
+            port: 
+              number: 83

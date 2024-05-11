@@ -7,5 +7,5 @@ metadata:
 data:  
   ds_url: 
   acess_token_mp: 
-  conexao_kafka: 10.0.209.67:9092
+  conexao_kafka: :9092
   
