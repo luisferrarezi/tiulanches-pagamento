@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata: 
+  name: tlpagamento-config 
+  labels: 
+    app: tlpagamento-config 
+data:  
+  ds_url: 
+  acess_token_mp: 
+  conexao_kafka: :9092
+  
