@@ -1,7 +1,7 @@
 package br.com.fiap.tiulanches.infra.mercadopago;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.payment.PaymentClient;
@@ -15,7 +15,7 @@ import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
 import br.com.fiap.tiulanches.core.enums.Pago;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
 
-@Service
+@Component
 public class PagamentoMP implements PagamentoExternoController{
 
 	private static final String PAYMENT = "payment";
