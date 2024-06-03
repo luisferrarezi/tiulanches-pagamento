@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fiap.tiulanches.adapter.controller.PagamentoController;
 import br.com.fiap.tiulanches.adapter.message.EventoEnum;
@@ -39,6 +40,7 @@ public class PagamentoService implements PagamentoController {
 	}	
 
 	@Override
+	@Transactional
 	public void registra(PagamentoDto dto) {
 		Optional<Pagamento> pagamento = pagamentoRepository.findById(dto.idPagamento());		
 
@@ -56,6 +58,7 @@ public class PagamentoService implements PagamentoController {
 	}
 
 	@Override
+	@Transactional	
 	public void cria(PagamentoDto dto) {
 		try {			
 			Pagamento pagamento = new Pagamento();
