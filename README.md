@@ -77,3 +77,22 @@ Atualmente para esta branch existem 2 níveis de automação, explicado abaixo:
     - validação via sonar cloud
     - build da aplicação, estando tudo ok é então logado no Container Registry da Azure, criado a imagem como latest e faz o upload dela para o ACR. 
     - Finalmente cria-se o ConfigMap com variáveis de ambiente necessárias para serem utilizadas pela aplicação no AKS, feito isso são utilizados os yamls configmap.yaml e app-deployment.yaml, para subir a aplicação no AKS.
+
+# Local
+## Execução
+Antes de se executar qualquer comando deste projeto é necessário que esse sejam executados os comandos que estão no repositório principal para ter uma estrutura prévia. [Tiu Lanches](https://github.com/luisferrarezi/tiulanches).
+
+Para executar o projeto localmente é necessário que antes seja criada uma base MongoDB em alguma cloud de sua preferência e configurar as variáveis de ambiente especificadas em "Variáveis de Ambiente", após isso vá até kubernetes\local onde tem o deployment necessário:
+
+~~~Execute
+kubectl apply -f tlpagamento-deployment.yaml
+~~~
+
+# OWASP
+## Relatórios
+Neste projeto é prossível encontrar os relatórios Zap com a divulgação de ajustes necessários e o relatório após a correção.
+
+[Consultar pagamento antes correção](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Consultar-Pagamento.pdf)
+[Consultar pagamento após correção](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Consultar-Pagamento-Corrigido.pdf)
+
+[Webhook não havia falha desde o início](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Pagamento-WebHook.pdf)
