@@ -93,6 +93,7 @@ kubectl apply -f tlpagamento-deployment.yaml
 Neste projeto é prossível encontrar os relatórios Zap com a divulgação de ajustes necessários e o relatório após a correção.
 
 [Consultar pagamento antes correção](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Consultar-Pagamento.pdf)
+
 [Consultar pagamento após correção](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Consultar-Pagamento-Corrigido.pdf)
 
 [Webhook não havia falha desde o início](https://github.com/luisferrarezi/tiulanches-pagamento/blob/main/documentacao/owasp/zap/ZAP-Pagamento-WebHook.pdf)
