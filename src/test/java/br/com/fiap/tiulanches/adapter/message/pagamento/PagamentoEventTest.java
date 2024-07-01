@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
+import br.com.fiap.tiulanches.core.enums.Pago;
 
 class PagamentoEventTest {
 
@@ -14,33 +14,34 @@ class PagamentoEventTest {
     
     @BeforeEach
     void beforeEach(){
-        this.pagamentoEvent = new PagamentoEvent(EventoEnum.CREATE, null);
+        this.pagamentoEvent = new PagamentoEvent(1, Pago.NAO);
     }
 
     @Test
     void createTest(){
-        pagamentoEvent.setPagamentoDto(null);
-        pagamentoEvent.setEvento(EventoEnum.CREATE);
+        pagamentoEvent.setIdPedido(1);
+        pagamentoEvent.setPago(Pago.NAO);
 
-        assertEquals(EventoEnum.CREATE, pagamentoEvent.getEvento());
-        assertEquals(null, pagamentoEvent.getPagamentoDto());
+        assertEquals(1, pagamentoEvent.getIdPedido());
+        assertEquals(Pago.NAO, pagamentoEvent.getPago());
     }
 
     @Test
     void constructorAllArgumentsTest(){
-        assertEquals(EventoEnum.CREATE, pagamentoEvent.getEvento());
+        assertEquals(1, pagamentoEvent.getIdPedido());
+        assertEquals(Pago.NAO, pagamentoEvent.getPago());
     }    
 
     @Test
     void noArgumentsTest(){
         pagamentoEvent = new PagamentoEvent();
 
-        assertEquals(null, pagamentoEvent.getEvento());
+        assertEquals(null, pagamentoEvent.getPago());
     }        
 
     @Test
     void equalsTest(){
-        PagamentoEvent pagamentoEvent2 = new PagamentoEvent(EventoEnum.CREATE, null);
+        PagamentoEvent pagamentoEvent2 = new PagamentoEvent(1, Pago.NAO);
 
         assertDoesNotThrow(()->pagamentoEvent.equals(pagamentoEvent2));
     }
