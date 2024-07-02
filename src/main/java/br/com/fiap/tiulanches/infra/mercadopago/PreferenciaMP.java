@@ -21,6 +21,7 @@ import com.mercadopago.resources.preference.Preference;
 
 import br.com.fiap.tiulanches.adapter.controller.PagamentoController;
 import br.com.fiap.tiulanches.adapter.controller.PreferenciaExternoController;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
 import br.com.fiap.tiulanches.adapter.repository.pedido.ItemPedidoDto;
 import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
@@ -30,9 +31,11 @@ import br.com.fiap.tiulanches.core.exception.BusinessException;
 @Component
 public class PreferenciaMP implements PreferenciaExternoController{
 	private final PagamentoController controller;
+	private final PagamentoMessage pagamentoMessage;
 	
-	public PreferenciaMP(PagamentoController controller){
+	public PreferenciaMP(PagamentoController controller, PagamentoMessage pagamentoMessage){
 		this.controller = controller;
+		this.pagamentoMessage = pagamentoMessage;
 	}
 
 	public void criar(PedidoDto dto) {
@@ -56,7 +59,9 @@ public class PreferenciaMP implements PreferenciaExternoController{
 	    } catch (MPApiException | MPException e) {	    	
 	    	StringBuilder erro = new StringBuilder();
 	    	erro.append("Falha integração Mercado Pago: ");
-	    	erro.append(e.getMessage());	    	
+	    	erro.append(e.getMessage());
+			
+			pagamentoMessage.enviaMensagem(dto.idPedido(), Pago.NAO);
 	    	
 	    	throw new BusinessException(e.getMessage(), HttpStatus.BAD_REQUEST, new String(erro));
 	    } 	    

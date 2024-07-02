@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
 import br.com.fiap.tiulanches.adapter.controller.PagamentoController;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
 import br.com.fiap.tiulanches.utils.pedido.PedidoPadrao;
 import uk.org.webcompere.systemstubs.environment.EnvironmentVariables;
@@ -26,6 +27,9 @@ class PreferenciaMPTest {
     @Mock
 	private PagamentoController controller;
 
+    @Mock
+	private PagamentoMessage pagamentoMessage;
+
     @SystemStub
     private EnvironmentVariables environmentVariables;
 
@@ -35,8 +39,8 @@ class PreferenciaMPTest {
     
     @BeforeEach
     void beforeEach(){        
-        preferenciaMP = new PreferenciaMP(controller);
         openMocks = MockitoAnnotations.openMocks(this);
+        preferenciaMP = new PreferenciaMP(controller, pagamentoMessage);        
         pedidoPadrao = new PedidoPadrao();        
     }
 

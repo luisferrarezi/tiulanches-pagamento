@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
@@ -18,11 +19,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
-import br.com.fiap.tiulanches.adapter.message.pedido.PedidoMessage;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoRepository;
-import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
 import br.com.fiap.tiulanches.core.entity.pagamento.Pagamento;
 import br.com.fiap.tiulanches.core.enums.Pago;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
@@ -35,7 +34,7 @@ class PagamentoServiceTest {
     private PagamentoRepository repository;    
 
     @Mock
-    private PedidoMessage message;
+    private PagamentoMessage message;
 
     private PagamentoService service;
     private AutoCloseable openMocks;
@@ -106,7 +105,7 @@ class PagamentoServiceTest {
 
         when(repository.findById(anyString())).thenReturn(pagamento);
         when(repository.save(any(Pagamento.class))).thenReturn(pagamentoPadrao.createPagamento());
-        doNothing().when(message).enviaMensagem(any(EventoEnum.class), any(PedidoDto.class));
+        doNothing().when(message).enviaMensagem(anyInt(), any(Pago.class));
         assertDoesNotThrow(()-> service.registra(pagamentoPadrao.createPagamentoDto()));
     }
 }
