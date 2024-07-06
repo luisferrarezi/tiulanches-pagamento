@@ -51,7 +51,6 @@ public class PagamentoService implements PagamentoController {
 				throw new BusinessException("Falha ao alterar pagamento!", HttpStatus.BAD_REQUEST, e.getMessage());
 			}			
 		} else {
-			pagamentoMessage.enviaMensagem(pagamento.get().getIdPedido(), Pago.NAO);
 			throw new BusinessException("Pagamento não encontrado!", HttpStatus.NOT_FOUND, "Pagamento");
 		}		
 	}
