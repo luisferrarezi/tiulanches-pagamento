@@ -1,6 +1,5 @@
 package br.com.fiap.tiulanches.core.service;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -8,24 +7,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fiap.tiulanches.adapter.controller.PagamentoController;
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
-import br.com.fiap.tiulanches.adapter.message.pedido.PedidoMessage;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoRepository;
-import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
 import br.com.fiap.tiulanches.core.entity.pagamento.Pagamento;
-import br.com.fiap.tiulanches.core.entity.pedido.Pedido;
+import br.com.fiap.tiulanches.core.enums.Pago;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
 
 @Service
 public class PagamentoService implements PagamentoController {
 
 	private final PagamentoRepository pagamentoRepository;
-	private final PedidoMessage pedidoMessage;	
+	private final PagamentoMessage pagamentoMessage;	
 	
-	public PagamentoService(PagamentoRepository pagamentoRepository, PedidoMessage pedidoMessage) {		
+	public PagamentoService(PagamentoRepository pagamentoRepository, PagamentoMessage pagamentoMessage) {		
 		this.pagamentoRepository = pagamentoRepository;
-		this.pedidoMessage = pedidoMessage;
+		this.pagamentoMessage = pagamentoMessage;
 	}
 	
 	@Override
@@ -48,8 +45,9 @@ public class PagamentoService implements PagamentoController {
 			try {			
 				pagamento.get().registrar(dto);
 				pagamentoRepository.save(pagamento.get());
-				pedidoMessage.enviaMensagem(EventoEnum.UPDATE, new PedidoDto(new Pedido(pagamento.get().getIdPedido(), null, new ArrayList<>())));
+				pagamentoMessage.enviaMensagem(pagamento.get().getIdPedido(), Pago.SIM);
 			} catch (Exception e) {
+				pagamentoMessage.enviaMensagem(pagamento.get().getIdPedido(), Pago.NAO);
 				throw new BusinessException("Falha ao alterar pagamento!", HttpStatus.BAD_REQUEST, e.getMessage());
 			}			
 		} else {
@@ -65,6 +63,7 @@ public class PagamentoService implements PagamentoController {
 			pagamento.criar(dto);
 			pagamentoRepository.save(pagamento);			
 		} catch (Exception e) {
+			pagamentoMessage.enviaMensagem(dto.idPedido(), Pago.NAO);
 			throw new BusinessException("Falha ao alterar pagamento!", HttpStatus.BAD_REQUEST, e.getMessage());
 		}			
 	}

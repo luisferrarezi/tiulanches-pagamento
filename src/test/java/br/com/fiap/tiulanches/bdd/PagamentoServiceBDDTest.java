@@ -13,12 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
-import br.com.fiap.tiulanches.adapter.message.pedido.PedidoMessage;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoRepository;
-import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
 import br.com.fiap.tiulanches.core.entity.pagamento.Pagamento;
-
+import br.com.fiap.tiulanches.core.enums.Pago;
 import br.com.fiap.tiulanches.core.service.PagamentoService;
 import br.com.fiap.tiulanches.utils.pagamento.PagamentoPadrao;
 
@@ -28,7 +26,7 @@ class PagamentoServiceBDDTest {
     private PagamentoRepository repository;    
 
     @Mock
-    private PedidoMessage message;
+    private PagamentoMessage message;
 
     private PagamentoService service;
     private AutoCloseable openMocks;
@@ -55,7 +53,7 @@ class PagamentoServiceBDDTest {
     void testRegistra() {
         given(repository.findById(anyString())).willReturn(pagamento);
         given(repository.save(any(Pagamento.class))).willReturn(pagamentoPadrao.createPagamento());
-        doNothing().when(message).enviaMensagem(any(EventoEnum.class), any(PedidoDto.class));
+        doNothing().when(message).enviaMensagem(anyInt(), any(Pago.class));
         assertDoesNotThrow(()-> service.registra(pagamentoPadrao.createPagamentoDto()));
     }
 }

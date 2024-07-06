@@ -13,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
 import br.com.fiap.tiulanches.adapter.controller.PagamentoController;
+import br.com.fiap.tiulanches.adapter.message.pagamento.PagamentoMessage;
 import br.com.fiap.tiulanches.core.exception.BusinessException;
 import uk.org.webcompere.systemstubs.environment.EnvironmentVariables;
 import uk.org.webcompere.systemstubs.jupiter.SystemStub;
@@ -28,6 +29,9 @@ class PagamentoMPTest {
     @Mock
 	private PagamentoController controller;
 
+    @Mock
+	private PagamentoMessage pagamentoMessage;
+
     @SystemStub
     private EnvironmentVariables environmentVariables;
 
@@ -36,7 +40,7 @@ class PagamentoMPTest {
     
     @BeforeEach
     void beforeEach(){        
-        pagamentoMP = new PagamentoMP(controller);
+        pagamentoMP = new PagamentoMP(controller, pagamentoMessage);
         openMocks = MockitoAnnotations.openMocks(this);
     }
 

@@ -1,7 +1,6 @@
 package br.com.fiap.tiulanches.adapter.message.pagamento;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
-import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
+import br.com.fiap.tiulanches.core.enums.Pago;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -15,6 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PagamentoEvent {
 
-    private EventoEnum evento;
-    private PagamentoDto pagamentoDto;
+    private long idPedido;
+    private Pago pago;
 }

@@ -1,8 +1,7 @@
 package br.com.fiap.tiulanches.adapter.message.pagamento;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
-import br.com.fiap.tiulanches.adapter.repository.pagamento.PagamentoDto;
+import br.com.fiap.tiulanches.core.enums.Pago;
 
 public interface PagamentoMessage {
-    public void enviaMensagem(EventoEnum evento, PagamentoDto pagamento);
+    public void enviaMensagem(long idPedido, Pago pago);
 }

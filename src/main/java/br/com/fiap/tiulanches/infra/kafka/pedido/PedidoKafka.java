@@ -17,7 +17,7 @@ public class PedidoKafka implements PedidoListener {
 	}
     
     @Override    
-    @KafkaListener(topics = "topico-pedido-producao", groupId = "grupo-pagamento")
+    @KafkaListener(topics = "topico-pedido-pagamento", groupId = "grupo-pagamento")
     public void processaMensagem(PedidoEvent pedidoEvent) {
         controller.criar(pedidoEvent.getPedidoDto());
     }

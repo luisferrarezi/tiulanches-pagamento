@@ -12,15 +12,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.kafka.core.KafkaTemplate;
 
-import br.com.fiap.tiulanches.adapter.message.EventoEnum;
 import br.com.fiap.tiulanches.adapter.message.pedido.PedidoEvent;
-import br.com.fiap.tiulanches.adapter.repository.pedido.PedidoDto;
-import br.com.fiap.tiulanches.utils.pedido.PedidoPadrao;
+import br.com.fiap.tiulanches.core.enums.Pago;
+import br.com.fiap.tiulanches.infra.kafka.pagamento.EnviaPagamento;
 
 class EnviaPedidoTest {
 
-    private EnviaPedido enviaPedido;
-    private PedidoPadrao pedidoPadrao;
+    private EnviaPagamento enviaPagamento;    
 
     @Mock
     KafkaTemplate<String, Object> kafka;
@@ -29,23 +27,19 @@ class EnviaPedidoTest {
     @SuppressWarnings("unchecked")    
     void beforeEach(){
         kafka = Mockito.mock(KafkaTemplate.class);
-        enviaPedido = new EnviaPedido(kafka);
-        pedidoPadrao = new PedidoPadrao();
+        enviaPagamento = new EnviaPagamento(kafka);        
     }
 
     @Test
     void constructorEnviaPedidoTest(){
-        enviaPedido = new EnviaPedido(kafka);
+        enviaPagamento = new EnviaPagamento(kafka);
 
-        assertNotEquals(null, enviaPedido);
+        assertNotEquals(null, enviaPagamento);
     }
 
     @Test
     void enviaMensagemTest(){
-        PedidoDto pedidoDto;
-        pedidoDto = pedidoPadrao.createPedidoDto();
-
         when(kafka.send(anyString(), any(PedidoEvent.class))).thenReturn(null);
-        assertDoesNotThrow(()->enviaPedido.enviaMensagem(EventoEnum.CREATE, pedidoDto));
+        assertDoesNotThrow(()->enviaPagamento.enviaMensagem(1, Pago.NAO));
     }    
 }
